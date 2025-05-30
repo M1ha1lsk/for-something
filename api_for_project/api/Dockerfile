@@ -1,8 +1,7 @@
-FROM python:3.10
+FROM python:3.11
 
 WORKDIR /app
 
-# Установим curl, gnupg, lsb-release и docker CLI
 RUN apt-get update && \
     apt-get install -y curl gnupg lsb-release && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
@@ -20,4 +19,4 @@ RUN chmod +x entrypoint.sh
 COPY . .
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
